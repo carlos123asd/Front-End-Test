@@ -1,10 +1,13 @@
+import { useProductsQuery } from "@/hooks/useProductsQuery";
 import CardProduct from "../molecules/CardProduct";
 
 export default function ListProducts() {
-    const products = [1,2,3,4,5].map(() => <CardProduct />)
+    const { products } = useProductsQuery();
     return (
         <div className="ListaProductos">
-            {products}
+            {products?.map(product => (
+                <CardProduct key={product.id} product={product} />
+            ))}
         </div>
     )
 }
