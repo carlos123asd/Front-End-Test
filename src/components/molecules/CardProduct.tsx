@@ -13,7 +13,7 @@ export default function CardProduct() {
             <div className="image-container">
                 <img
                     className="ImgCardProduct"
-                    src="https://itx-frontend-test.onrender.com/images/ZmGrkLRPXOTpxsU4jjAcv.jpg"
+                    src=""
                     alt="Iphone 14 Pro Max"
                     width={220}
                     height={300}

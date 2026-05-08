@@ -53,6 +53,7 @@
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   padding: 1em;
   border-radius: .5em;
+  text-align: center;
 }
 
 .ImgCardProduct {
