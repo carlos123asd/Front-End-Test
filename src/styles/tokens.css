@@ -81,3 +81,15 @@
 .text-3xl {
   font-size: var(--font-size-3xl);
 }
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 700;
+}
