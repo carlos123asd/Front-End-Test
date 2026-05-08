@@ -1,4 +1,6 @@
 @import './tokens.css';
+@import './ProductListPageStyle/index.css';
+@import './ProductDetailsPageStyle/index.css';
 
 :root {
 	--app-bg: #f7f8fa;
