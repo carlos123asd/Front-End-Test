@@ -1,12 +1,13 @@
 import type { Product } from "@/types/Product";
 import BtnAtom from "../atoms/BtnAtom";
 import TextAtom from "../atoms/TextAtom";
-import { FaCartPlus } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 export default function CardProduct({ product }: { product: Product }) {
+    const navigate = useNavigate();
 
-    const handleBtnAction = async () => {
-
+    const navigateToProductDetails = (productId: string) => {
+        navigate(`/products/${productId}`);
     }
 
     return (
@@ -27,8 +28,7 @@ export default function CardProduct({ product }: { product: Product }) {
             <div className="ContainerAction">
                 <TextAtom text={product.price.length > 0 ? `${product.price}€` : "Precio no Disponible"} color="primary" size="xl" />
                 <BtnAtom
-                    onClick={handleBtnAction} 
-                    icon={<FaCartPlus color="black" size={30} />} />
+                    onClick={() => navigateToProductDetails(product.id)} text="See more details"/>
             </div>
         </div>
     )
