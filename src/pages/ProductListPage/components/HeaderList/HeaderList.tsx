@@ -1,7 +1,7 @@
 import TextAtom from "@/components/atoms/TextAtom";
 import Search from "@/components/molecules/Search";
 
-export default function HeaderList() {
+export default function HeaderList({ search, onSearchChange }: { search: string, onSearchChange: (value: string) => void }) {
     return (
         <div className="HeaderList">
             <div>
@@ -18,7 +18,7 @@ export default function HeaderList() {
                     size="lg" 
                     color="neutral" />
             </div>
-            <Search />
+            <Search value={search} onChange={onSearchChange} />
         </div>
     )
 }
