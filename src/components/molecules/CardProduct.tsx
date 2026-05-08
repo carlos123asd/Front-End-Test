@@ -25,7 +25,7 @@ export default function CardProduct({ product }: { product: Product }) {
                 <TextAtom as="h3" text={product.model} color="black" size="xl" />
             </div>
             <div className="ContainerAction">
-                <TextAtom text={`${product.price}€`} color="primary" size="xl" />
+                <TextAtom text={product.price.length > 0 ? `${product.price}€` : "Precio no Disponible"} color="primary" size="xl" />
                 <BtnAtom
                     onClick={handleBtnAction} 
                     icon={<FaCartPlus color="black" size={30} />} />
