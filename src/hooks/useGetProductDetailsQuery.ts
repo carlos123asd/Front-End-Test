@@ -7,7 +7,7 @@ export const useProductDetailsQuery = (productId: string) => {
         queryFn: () => getProductDetails(productId),
     })
     return {
-        products: data,
+        details: data,
         isLoading,
         error
     }

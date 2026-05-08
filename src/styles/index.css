@@ -8,6 +8,8 @@
 	--app-text: #111827;
 	--app-text-muted: #6b7280;
 	--app-border: #e5e7eb;
+  --app-background-opacity: #DCE1FF;
+  --app-background-card: #F4F3FA;
 	--app-focus: rgba(30, 58, 138, 0.35);
 	--radius-sm: 8px;
 	--radius-md: 12px;
@@ -93,13 +95,21 @@ button {
 	box-shadow: var(--shadow-sm);
 	cursor: pointer;
   padding: 0.5em 1em;
+  text-align: center;
 }
 
 .buttonIcon {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5em;
-  padding: .8em;
+  padding: 1.2em;
+}
+.buttonIcon div{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
 }
 
 a {

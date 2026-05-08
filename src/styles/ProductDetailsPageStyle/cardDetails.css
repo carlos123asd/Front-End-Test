@@ -1,0 +1,64 @@
+/*CardDetails - Componente principal*/
+.CardDetails {
+    display: flex;
+    height: 600px;
+    flex-direction: row;
+    gap: 1em;
+    padding: 1em 1.25em;
+}
+.Image{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--app-border);
+    text-align: center;
+    border-radius: 1em;
+    padding: 2em;
+    background-color: var(--app-background-card);
+}
+.Image img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+.Details {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+.BtnSelected {
+    background-color: var(--app-background-opacity);
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+}
+.ContainerActions {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.BtnNormalActionStorage {
+    width: fit-content;
+}
+.BtnNormalActionColor {
+    width: fit-content;
+    border-radius: 10em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+.ContainerBtnActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+.CircleColor {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--app-border);
+}
