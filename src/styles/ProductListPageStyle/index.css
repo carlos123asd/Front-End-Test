@@ -1,5 +1,6 @@
 @import './header.css';
 @import './headerList.css';
+@import './listProducts.css';
 
 .ContainerContent{
     padding: 1em;

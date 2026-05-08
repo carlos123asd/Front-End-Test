@@ -1,5 +1,6 @@
 import Header from "@/components/organism/Header";
 import HeaderList from "./components/HeaderList/HeaderList";
+import ListProducts from "../../components/organism/ListProducts";
 
 export default function ProductsListPage() {
     return (
@@ -7,6 +8,7 @@ export default function ProductsListPage() {
             <Header />
             <div className="ContainerContent">
                 <HeaderList />
+                <ListProducts />
             </div>
         </div>
     )

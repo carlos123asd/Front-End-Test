@@ -92,6 +92,14 @@ button {
 	background-color: var(--app-surface);
 	box-shadow: var(--shadow-sm);
 	cursor: pointer;
+  padding: 0.5em 1em;
+}
+
+.buttonIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: .8em;
 }
 
 a {

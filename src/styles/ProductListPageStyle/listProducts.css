@@ -1,0 +1,65 @@
+/*COMPONENTE PRINCIPAL - ListaProductos */
+.ListaProductos{
+    display: grid;
+    /*Max 4 columnas*/
+    grid-template-columns: 1fr;
+    gap: 1em;
+}
+
+/* Mobile: 1 columna */
+@media (max-width: 640px) {
+  .ListaProductos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet pequeña: 2 columnas */
+@media (min-width: 641px) and (max-width: 768px) {
+  .ListaProductos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet grande: 3 columnas */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .ListaProductos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Escritorio: 4 columnas (nunca más) */
+@media (min-width: 1025px) {
+  .ListaProductos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/*COMPONENTE SECUNDARIO - CardProducto */
+.CardProducto{
+    width: 100%;
+    border: 1px solid var(--app-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--app-surface);
+    box-shadow: var(--shadow-sm);
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  padding: 1em;
+  border-radius: .5em;
+}
+
+.ImgCardProduct {
+  border-radius: 1em;
+}
+.ContainerAction{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
