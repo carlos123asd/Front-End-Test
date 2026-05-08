@@ -1,6 +1,22 @@
+/*PRINCIPAL*/
 .HeaderList {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    flex-wrap: wrap;
+    gap: 2em;
+}   
+/*ESTILOS COMPONENTES SECUNDARIOS*/
+/*Search*/
+.Search {
+    width: 100%;
+    max-width: 400px;
+}
+.Search input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--app-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
 }
