@@ -1,5 +1,5 @@
 
-import { use, type CSSProperties } from 'react'
+import { type CSSProperties } from 'react'
 import { resolveTextTokenClasses, type TextTokenProps } from '@/types/styleTokens'
 import { useNavigate } from 'react-router-dom'
 

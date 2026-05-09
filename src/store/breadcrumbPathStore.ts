@@ -1,5 +1,7 @@
 import { create } from "zustand";
 import { formatPathGetTitle, getChainedPathnames } from "@/utils/FormatPath";
+import { queryClient } from "@/api/config/queryClient";
+import type { Product, ProductDetails } from "@/types/Product";
 
 type BreadcrumbPathState = {
     pathname: string;
@@ -10,6 +12,22 @@ type BreadcrumbPathState = {
 }
 
 const ROOT_PATH = '/';
+const PRODUCTS_PATH_SEGMENT = 'products';
+
+const getProductNameByIdFromCache = (productId: string): string | undefined => {
+    const productDetails = queryClient.getQueryData<ProductDetails>(["productDetails", productId]);
+    if (productDetails) {
+        return `${productDetails.brand} ${productDetails.model}`.trim();
+    }
+
+    const products = queryClient.getQueryData<Product[]>(["products"]);
+    const product = products?.find((item) => item.id === productId);
+    if (product) {
+        return `${product.brand} ${product.model}`.trim();
+    }
+
+    return "Name not found";
+}
 
 export const useBreadcrumbPathStore = create<BreadcrumbPathState>((set) => ({
     pathname: ROOT_PATH,
@@ -31,13 +49,15 @@ export const useBreadcrumbPathStore = create<BreadcrumbPathState>((set) => ({
             let breadcrumbRoutes = chainedPathnames.map((path) => formatPathGetTitle(path));
             let breadcrumbLinks = [...chainedPathnames];
 
-            // For dynamic details routes like /products/:id, keep "Products > {id}" as one breadcrumb value.
-            if (pathSegments.length === 2) {
+            // /products/:id, mantiene "Products > {nombre del producto}" como un solo nivel
+            if (pathSegments.length === 2 && pathSegments[0].toLowerCase() === PRODUCTS_PATH_SEGMENT) {
                 const parentPath = `/${pathSegments[0]}`;
+                const productId = pathSegments[1];
+                const productName = getProductNameByIdFromCache(productId) ?? productId;
 
                 breadcrumbRoutes = [
                     formatPathGetTitle(ROOT_PATH),
-                    `${formatPathGetTitle(parentPath)} > ${formatPathGetTitle(safePathname)}`,
+                    `${formatPathGetTitle(parentPath)} > ${productName}`,
                 ];
                 breadcrumbLinks = [ROOT_PATH, safePathname];
             }
