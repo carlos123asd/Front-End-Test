@@ -15,6 +15,7 @@ export default function Breadcrumbs() {
                 return (
                     <TextAtom 
                         as="a"
+                        size="lg"
                         link={breadcrumbLinks[index] || "/"}
                         style={index === breadcrumbRoutes.length - 1 ? pathActive : {}}
                         key={`${route}-${index}`}

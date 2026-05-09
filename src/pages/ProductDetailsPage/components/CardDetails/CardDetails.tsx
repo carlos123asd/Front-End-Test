@@ -4,7 +4,7 @@ import { BsCartCheck } from "react-icons/bs";
 import type { ProductDetails } from "@/types/Product";
 import BtnsActionStorage from "../BtnsActions/BtnsActionStorage";
 import BtnActionColor from "../BtnsActions/BtnActionColor";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAddProductMutation } from "@/hooks/useAddProductMutation";
 import { useCartStore } from "@/store/cartStore";
 import type { AddToCartResponse } from "@/types/Cart";
@@ -14,6 +14,7 @@ import { showToastify } from "@/utils/ShowToastify";
 export default function CardDetails({ data }: { data: ProductDetails }) {
     const [selectedStorage, setSelectedStorage] = useState<number | null>(null);
     const [selectedColor, setSelectedColor] = useState<number | null>(null);
+    const [visibleToast, setVisibleToast] = useState(false);
     const updateCount = useCartStore((state) => state.updateCount);
     const { mutate, isPending } = useAddProductMutation();
 
@@ -34,6 +35,9 @@ export default function CardDetails({ data }: { data: ProductDetails }) {
                     showToastify("Error adding product to cart", "error").showToast();
                 }
             });
+        }else{
+            setVisibleToast(true);
+            showToastify("Please select storage and color options", "warning").showToast();
         }
     }
 
@@ -44,7 +48,14 @@ export default function CardDetails({ data }: { data: ProductDetails }) {
     const handleColorSelect = (colorCode: number) => {
         setSelectedColor(colorCode);
     }
-    console.log(data)
+
+    useEffect(() => {
+        if (selectedStorage && selectedColor) {
+            setVisibleToast(false);
+        }
+    }, [selectedStorage, selectedColor]);
+
+
     return (
         <div className="CardDetails">
             <div className="Image">
@@ -121,6 +132,7 @@ export default function CardDetails({ data }: { data: ProductDetails }) {
                         }
                     </div>
                 </div>
+                {visibleToast && <TextAtom as="span" text="Select storage and color options" color="tertiary" size="md" />}
                 <BtnAtom
                     style={isPending ? style.btnDisabled : style.btn}
                     text={isPending ? "Adding..." : "Add to Cart"}
@@ -146,4 +158,4 @@ const style = {
         gap: ".5em",
     },
 
-}
+}  as { [key: string]: React.CSSProperties };

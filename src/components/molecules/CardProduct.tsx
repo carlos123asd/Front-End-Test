@@ -28,6 +28,7 @@ export default function CardProduct({ product }: { product: Product }) {
             <div className="ContainerAction">
                 <TextAtom text={product.price.length > 0 ? `$${product.price}` : "Price not available"} color="primary" size="xl" />
                 <BtnAtom
+                    style={styles.btn}
                     onClick={() => navigateToProductDetails(product.id)} text="See more details"/>
             </div>
         </div>
@@ -37,5 +38,9 @@ export default function CardProduct({ product }: { product: Product }) {
 const styles = {
     imgContainer: {
         cursor: "pointer",
-    } as React.CSSProperties,
-}
+    },
+    btn: {
+        border: "1px solid #1e3a8a",
+        color: "#1e3a8a",
+    } 
+} as { imgContainer: React.CSSProperties; btn: React.CSSProperties };
