@@ -5,6 +5,7 @@ type BreadcrumbPathState = {
     pathname: string;
     chainedPathSet: Set<string>;
     breadcrumbRoutes: string[];
+    breadcrumbLinks: string[];
     syncPathname: (pathname: string) => void;
 }
 
@@ -14,6 +15,7 @@ export const useBreadcrumbPathStore = create<BreadcrumbPathState>((set) => ({
     pathname: ROOT_PATH,
     chainedPathSet: new Set([ROOT_PATH]),
     breadcrumbRoutes: [formatPathGetTitle(ROOT_PATH)],
+    breadcrumbLinks: [ROOT_PATH],
     syncPathname: (pathname) => {
         set((state) => {
             const safePathname = pathname || ROOT_PATH;
@@ -22,13 +24,29 @@ export const useBreadcrumbPathStore = create<BreadcrumbPathState>((set) => ({
                 return state;
             }
 
-            const chainedPathSet = new Set(getChainedPathnames(safePathname));
-            const breadcrumbRoutes = Array.from(chainedPathSet).map((path) => formatPathGetTitle(path));
+            const chainedPathnames = getChainedPathnames(safePathname);
+            const chainedPathSet = new Set(chainedPathnames);
+            const pathSegments = safePathname.split('/').filter(Boolean);
+
+            let breadcrumbRoutes = chainedPathnames.map((path) => formatPathGetTitle(path));
+            let breadcrumbLinks = [...chainedPathnames];
+
+            // For dynamic details routes like /products/:id, keep "Products > {id}" as one breadcrumb value.
+            if (pathSegments.length === 2) {
+                const parentPath = `/${pathSegments[0]}`;
+
+                breadcrumbRoutes = [
+                    formatPathGetTitle(ROOT_PATH),
+                    `${formatPathGetTitle(parentPath)} > ${formatPathGetTitle(safePathname)}`,
+                ];
+                breadcrumbLinks = [ROOT_PATH, safePathname];
+            }
 
             return {
                 pathname: safePathname,
                 chainedPathSet,
                 breadcrumbRoutes,
+                breadcrumbLinks,
             };
         });
     },

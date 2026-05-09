@@ -7,7 +7,7 @@ export default function Header() {
     return (
         <header className="header">
             <div className="ContenedorSuperior">
-                <TextAtom size="3xl" color="primary" weight="bold" />
+                <TextAtom as="a" size="3xl" color="primary" weight="bold" />
                 <Cart />
             </div>
             <Breadcrumbs />
