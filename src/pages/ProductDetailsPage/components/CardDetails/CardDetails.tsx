@@ -6,17 +6,29 @@ import BtnsActionStorage from "../BtnsActions/BtnsActionStorage";
 import BtnActionColor from "../BtnsActions/BtnActionColor";
 import { useState } from "react";
 import { useAddProductMutation } from "@/hooks/useAddProductMutation";
+import { useCartStore } from "@/store/cartStore";
+import type { AddToCartResponse } from "@/types/Cart";
+import { generateId } from "@/utils/NumerUtils";
 
 export default function CardDetails({ data }: { data: ProductDetails }) {
     const [selectedStorage, setSelectedStorage] = useState<number | null>(null);
     const [selectedColor, setSelectedColor] = useState<number | null>(null);
-    const { mutate, isPending, isSuccess } = useAddProductMutation();
+    const updateCount = useCartStore((state) => state.updateCount);
+    const { mutate, isPending } = useAddProductMutation();
 
     const handleAddToCart = () => {
         if (selectedStorage && selectedColor) {
             mutate({
+                id: generateId(),
                 colorCode: selectedColor,
                 storageCode: selectedStorage,
+            }, {
+                onSuccess: (response) => {
+                    const cartResponse = response as AddToCartResponse;
+                    updateCount(cartResponse.count);
+                },
+                onError: (error) => {
+                }
             });
         }
     }
@@ -62,7 +74,7 @@ export default function CardDetails({ data }: { data: ProductDetails }) {
                         }
                     </div>
                 </div>
-                <BtnAtom style={{ backgroundColor: "#10B981", color: "white" }} text="Add to Cart" icon={<BsCartCheck color="white" />} onClick={handleAddToCart} />
+                <BtnAtom style={{ backgroundColor: "#10B981", color: "white" }} text={isPending ? "Adding..." : "Add to Cart"} icon={<BsCartCheck color="white" />} onClick={handleAddToCart} />
             </div>
         </div>
     )

@@ -15,14 +15,21 @@ export const useBreadcrumbPathStore = create<BreadcrumbPathState>((set) => ({
     chainedPathSet: new Set([ROOT_PATH]),
     breadcrumbRoutes: [formatPathGetTitle(ROOT_PATH)],
     syncPathname: (pathname) => {
-        const safePathname = pathname || ROOT_PATH;
-        const chainedPathSet = new Set(getChainedPathnames(safePathname));
-        const breadcrumbRoutes = Array.from(chainedPathSet).map((path) => formatPathGetTitle(path));
+        set((state) => {
+            const safePathname = pathname || ROOT_PATH;
 
-        set({
-            pathname: safePathname,
-            chainedPathSet,
-            breadcrumbRoutes,
+            if (state.pathname === safePathname) {
+                return state;
+            }
+
+            const chainedPathSet = new Set(getChainedPathnames(safePathname));
+            const breadcrumbRoutes = Array.from(chainedPathSet).map((path) => formatPathGetTitle(path));
+
+            return {
+                pathname: safePathname,
+                chainedPathSet,
+                breadcrumbRoutes,
+            };
         });
     },
 }));

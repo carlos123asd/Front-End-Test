@@ -9,7 +9,7 @@ export type Product = {
 
 //type para añadir productos al carrito
 export type ProductCart = {
-    //id: number,
+    id: number,
     colorCode: number,
     storageCode: number,
 }
