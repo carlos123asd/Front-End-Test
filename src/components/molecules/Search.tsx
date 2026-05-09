@@ -1,7 +1,31 @@
+import { FaMagnifyingGlass } from "react-icons/fa6";
+
 export default function Search({ value, onChange }: { value: string, onChange: (value: string) => void }) {
     return (
-        <div className="Search">
-            <input type="text" placeholder="Search for products..." value={value} onChange={(e) => onChange(e.target.value)} />
+        <div className="Search" style={styles.search}>
+            <FaMagnifyingGlass style={styles.icon} />
+            <input 
+                type="text" 
+                placeholder="Search for products..." 
+                value={value} 
+                onChange={(e) => onChange(e.target.value)}
+                style={styles.input}
+             />
         </div>
     )
 }
+
+const styles = {
+    search: {
+        position: "relative",
+    },
+    input: {
+        paddingLeft: "35px",
+    },
+    icon: {
+        position: "absolute",
+        left: "10px",
+        top: "50%",
+        transform: "translateY(-50%)",
+    }
+} as { [key: string]: React.CSSProperties };

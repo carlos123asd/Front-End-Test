@@ -44,7 +44,7 @@ export default function CardDetails({ data }: { data: ProductDetails }) {
     const handleColorSelect = (colorCode: number) => {
         setSelectedColor(colorCode);
     }
-
+    console.log(data)
     return (
         <div className="CardDetails">
             <div className="Image">
@@ -55,6 +55,49 @@ export default function CardDetails({ data }: { data: ProductDetails }) {
                     <TextAtom as="h2" text={data.brand} color="primary" size="md" />
                     <TextAtom as="h3" text={data.model} color="black" weight="bold" size="3xl" />
                     <TextAtom as="p" text={`${data.price ? `$${data.price}` : "Price not available"}`} color="primary" size="3xl" />
+                </div>
+
+                <TextAtom as="span" text="DESCRIPTION" color="black" size="md" />
+                <TextAtom
+                    as="p"
+                    text={`Mobile featuring a ${data.displaySize} inch display, ${data.cpu} quad-core processor, ${data.ram} of RAM, and Android ${data.os}. It includes a ${data.battery} battery, measures ${data.dimentions}, and offers a ${data.primaryCamera} rear camera along with a ${data.secondaryCmera} front camera.`}
+                    color="primary"
+                    size="md"
+                />
+
+                <div>
+                    <div style={style.containerItemDetails}>
+                        <TextAtom as="h4" text="Battery:" color="black" size="md" />
+                        <TextAtom as="p" text={data.battery} color="primary" size="md" />
+                    </div>
+                    <div style={style.containerItemDetails}>
+                        <TextAtom as="h4" text="CPU:" color="black" size="md" />
+                        <TextAtom as="p" text={data.cpu} color="primary" size="md" />
+                    </div>
+                    <div style={style.containerItemDetails}>
+                        <TextAtom as="h4" text="Dimensions:" color="black" size="md" />
+                        <TextAtom as="p" text={data.dimentions} color="primary" size="md" />
+                    </div>
+                    <div style={style.containerItemDetails}>
+                        <TextAtom as="h4" text="Primary Camera:" color="black" size="md" />
+                        <TextAtom as="p" text={data.primaryCamera} color="primary" size="md" />
+                    </div>
+                    <div style={style.containerItemDetails}>
+                        <TextAtom as="h4" text="Secondary Camera:" color="black" size="md" />
+                        <TextAtom as="p" text={data.secondaryCmera} color="primary" size="md" />
+                    </div>
+                    <div style={style.containerItemDetails}>
+                        <TextAtom as="h4" text="Operating System:" color="black" size="md" />
+                        <TextAtom as="p" text={data.os} color="primary" size="md" />
+                    </div>
+                    <div style={style.containerItemDetails}>
+                        <TextAtom as="h4" text="Display Resolution:" color="black" size="md" />
+                        <TextAtom as="p" text={data.displayResolution} color="primary" size="md" />
+                    </div>
+                    <div style={style.containerItemDetails}>
+                        <TextAtom as="h4" text="RAM:" color="black" size="md" />
+                        <TextAtom as="p" text={data.ram} color="primary" size="md" />
+                    </div>
                 </div>
 
                 <div className="ContainerActions">
@@ -78,10 +121,10 @@ export default function CardDetails({ data }: { data: ProductDetails }) {
                         }
                     </div>
                 </div>
-                <BtnAtom 
-                    style={isPending ? style.btnDisabled : style.btn} 
-                    text={isPending ? "Adding..." : "Add to Cart"} 
-                    icon={<BsCartCheck color="white" />} 
+                <BtnAtom
+                    style={isPending ? style.btnDisabled : style.btn}
+                    text={isPending ? "Adding..." : "Add to Cart"}
+                    icon={<BsCartCheck color="white" />}
                     onClick={handleAddToCart} />
             </div>
         </div>
@@ -97,5 +140,10 @@ const style = {
         backgroundColor: "#6B7280",
         color: "white",
         cursor: "not-allowed",
-    }
+    },
+    containerItemDetails: {
+        display: "flex",
+        gap: ".5em",
+    },
+
 }

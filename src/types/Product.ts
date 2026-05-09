@@ -30,8 +30,10 @@ export type ProductDetails = {
   ram: string;
   os: string;
   displayResolution: string;
+  displaySize: string;
   battery: string;
-  primaryCamera: string[];
+  primaryCamera: string;
+  secondaryCmera: string;
   dimentions: string;
   weight: string;
   options: {

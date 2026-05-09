@@ -12,7 +12,7 @@ export default function CardProduct({ product }: { product: Product }) {
 
     return (
         <div className="CardProducto">
-            <div className="image-container">
+            <div onClick={() => navigateToProductDetails(product.id)} style={styles.imgContainer} className="image-container">
                 <img
                     className="ImgCardProduct"
                     src={product.imgUrl}
@@ -32,4 +32,10 @@ export default function CardProduct({ product }: { product: Product }) {
             </div>
         </div>
     )
+}
+
+const styles = {
+    imgContainer: {
+        cursor: "pointer",
+    } as React.CSSProperties,
 }
