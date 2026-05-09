@@ -1,14 +1,18 @@
 /*CardDetails - Componente principal*/
 .CardDetails {
     display: flex;
-    height: 600px;
     flex-direction: row;
-    gap: 1em;
-    padding: 1em 1.25em;
+    gap: 2em;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    margin-top: 3.5em;
+    padding: 2em 6em;
+    
 }
 .Image{
-    width: 50%;
-    height: 100%;
+    flex: 1 1 50%;
+    max-width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,16 +23,31 @@
     background-color: var(--app-background-card);
 }
 .Image img{
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
 }
 .Details {
-    width: 50%;
+    flex: 1 1 50%;
+    max-width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     gap: 1rem;
+}
+@media (max-width: 852px) {
+    .CardDetails {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        padding: 1em;
+    }
+
+    .Image,
+    .Details {
+        flex: 1 1 100%;
+        max-width: 100%;
+        width: 100%;
+    }
 }
 .BtnSelected {
     background-color: var(--app-background-opacity);
