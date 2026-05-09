@@ -4,7 +4,7 @@ import { BsCartCheck } from "react-icons/bs";
 import type { ProductDetails } from "@/types/Product";
 import BtnsActionStorage from "../BtnsActions/BtnsActionStorage";
 import BtnActionColor from "../BtnsActions/BtnActionColor";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAddProductMutation } from "@/hooks/useAddProductMutation";
 import { useCartStore } from "@/store/cartStore";
 import type { AddToCartResponse } from "@/types/Cart";
@@ -43,17 +43,19 @@ export default function CardDetails({ data }: { data: ProductDetails }) {
 
     const handleStorageSelect = (storageCode: number) => {
         setSelectedStorage(storageCode);
+
+        if(selectedColor){
+            setVisibleToast(false);
+        }
     }
 
     const handleColorSelect = (colorCode: number) => {
         setSelectedColor(colorCode);
-    }
 
-    useEffect(() => {
-        if (selectedStorage && selectedColor) {
+        if(selectedStorage){
             setVisibleToast(false);
         }
-    }, [selectedStorage, selectedColor]);
+    }
 
 
     return (
