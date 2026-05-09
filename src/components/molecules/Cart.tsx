@@ -1,8 +1,7 @@
-import { useCartStore } from "@/store/cartStore";
 import { FiShoppingCart } from "react-icons/fi";
 
 export default function Cart() {
-    const count = useCartStore((state) => state.count);
+    const count = localStorage.getItem('cartCount') || '0';
     
     return (
         <div className="Cart">

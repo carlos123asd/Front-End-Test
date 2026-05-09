@@ -8,5 +8,8 @@ type cardStore = {
 export const useCartStore = create<cardStore>((set) => ({
     count: 0,
     
-    updateCount: (newCount) => set({ count: newCount }),
+    updateCount: (newCount) => {
+        set({ count: newCount })
+        localStorage.setItem('cartCount', newCount.toString());
+    },
 }));
