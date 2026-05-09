@@ -54,7 +54,7 @@ export default function CardDetails({ data }: { data: ProductDetails }) {
                 <div>
                     <TextAtom as="h2" text={data.brand} color="primary" size="md" />
                     <TextAtom as="h3" text={data.model} color="black" weight="bold" size="3xl" />
-                    <TextAtom as="p" text={`$${data.price}`} color="primary" size="3xl" />
+                    <TextAtom as="p" text={`${data.price ? `$${data.price}` : "Price not available"}`} color="primary" size="3xl" />
                 </div>
 
                 <div className="ContainerActions">
