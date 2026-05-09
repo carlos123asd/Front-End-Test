@@ -78,8 +78,24 @@ export default function CardDetails({ data }: { data: ProductDetails }) {
                         }
                     </div>
                 </div>
-                <BtnAtom style={{ backgroundColor: "#10B981", color: "white" }} text={isPending ? "Adding..." : "Add to Cart"} icon={<BsCartCheck color="white" />} onClick={handleAddToCart} />
+                <BtnAtom 
+                    style={isPending ? style.btnDisabled : style.btn} 
+                    text={isPending ? "Adding..." : "Add to Cart"} 
+                    icon={<BsCartCheck color="white" />} 
+                    onClick={handleAddToCart} />
             </div>
         </div>
     )
+}
+
+const style = {
+    btn: {
+        backgroundColor: "#10B981",
+        color: "white",
+    },
+    btnDisabled: {
+        backgroundColor: "#6B7280",
+        color: "white",
+        cursor: "not-allowed",
+    }
 }
