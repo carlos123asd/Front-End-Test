@@ -126,3 +126,12 @@ a:hover {
 	outline-offset: 2px;
 }
 
+.toast-error {
+  background-color: #f44336;
+  color: white;
+}
+
+.toast-success {
+  background-color: #4CAF50;
+  color: white;
+}

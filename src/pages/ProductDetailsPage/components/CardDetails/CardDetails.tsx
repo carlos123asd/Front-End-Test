@@ -9,6 +9,7 @@ import { useAddProductMutation } from "@/hooks/useAddProductMutation";
 import { useCartStore } from "@/store/cartStore";
 import type { AddToCartResponse } from "@/types/Cart";
 import { generateId } from "@/utils/NumerUtils";
+import { showToastify } from "@/utils/ShowToastify";
 
 export default function CardDetails({ data }: { data: ProductDetails }) {
     const [selectedStorage, setSelectedStorage] = useState<number | null>(null);
@@ -26,8 +27,11 @@ export default function CardDetails({ data }: { data: ProductDetails }) {
                 onSuccess: (response) => {
                     const cartResponse = response as AddToCartResponse;
                     updateCount(cartResponse.count);
+                    showToastify("Product added to cart successfully").showToast();
                 },
                 onError: (error) => {
+                    console.error("Error adding product to cart:", error);
+                    showToastify("Error adding product to cart", "error").showToast();
                 }
             });
         }
